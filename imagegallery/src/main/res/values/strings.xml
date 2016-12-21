@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">ImageGallery</string>
+    <string name="out_of">" out of "</string>
+</resources>
