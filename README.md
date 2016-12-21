@@ -3,7 +3,8 @@
 <!--[![Build Status](https://api.travis-ci.org/ChristianLJ/MaterialEditText.svg)](https://travis-ci.org/ChristianLJ/MaterialEditText)-->
 [![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg?style=flat-square)](https://opensource.org/licenses/Apache2)
 
-ImageGallery is an image gallery for Android. With this image gallery you can easly add a gallery to your app.
+ImageGallery is an image gallery for Android. With this image gallery you can easly add a gallery to your app. 
+The gallery accepts a List<String> and uses Picasso to load them.
 
 ImageGallery is licensed under the friendly [Apache2 licence].
 
