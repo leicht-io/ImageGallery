@@ -13,6 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import app.ltaps.imagegallery.Utils.CenterLayoutManager;
@@ -24,6 +25,7 @@ import app.ltaps.imagegallery.Utils.PlacesGalleryAdapter;
  * Edited by Christian on 22-12-2016.
  */
 
+@SuppressWarnings("unused")
 public class ImageGallery extends RelativeLayout {
     private Context context;
     private List<String> imageUrls;
@@ -64,9 +66,7 @@ public class ImageGallery extends RelativeLayout {
     public ImageGallery setImages(String[] imageUrlsStringArray) {
         this.imageUrls = new ArrayList<>();
         if (imageUrlsStringArray != null) {
-            for (String imageUrl : imageUrlsStringArray) {
-                this.imageUrls.add(imageUrl);
-            }
+            Collections.addAll(this.imageUrls, imageUrlsStringArray);
         }
         return this;
     }
