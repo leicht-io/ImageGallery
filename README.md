@@ -5,7 +5,7 @@
 
 ImageGallery is an image gallery for Android. With this image gallery you can easly add a gallery to your app. 
 
-The gallery accepts a `List<String>` and uses Picasso to load them.
+The gallery accepts a `List<String>` containing image URL's and uses Picasso to load them.
 
 ImageGallery is licensed under the friendly [Apache2 licence].
 
@@ -28,11 +28,9 @@ android {
 - English
 
 #### Screenshots:
-![Screenshot 1](https://raw.githubusercontent.com/ChristianLJ/ImageGallery/master/documentation/s1.png?w=290)
-![Screenshot 2](https://raw.githubusercontent.com/ChristianLJ/ImageGallery/master/documentation/s2.png?w=290)
-
+<img src="https://raw.githubusercontent.com/ChristianLJ/ImageGallery/master/documentation/s1.png" width="290">
+<img src="https://raw.githubusercontent.com/ChristianLJ/ImageGallery/master/documentation/s2.png" width="290">
 ### Example:
-Use the gallery the following way:
 Add the view to your app:
 ```xml
 <app.ltaps.imagegallery.ImageGallery
@@ -50,7 +48,7 @@ protected void onCreate(Bundle savedInstanceState) {
 
     ImageGallery imageGallery = (ImageGallery) findViewById(R.id.imageGallery);
     imageGallery
-            .setImages(getImages())
+            .setImages(getImages()) //A List with URL's
             .setNoImagesAvailableText("No images available yet!")
             .setOnLargeImageClickCallback(new OnClickCallback() {
                 @Override
