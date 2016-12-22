@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import app.ltaps.imagegallery.ImageGallery;
@@ -20,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
         ImageGallery imageGallery = (ImageGallery) findViewById(R.id.imageGallery);
         imageGallery
                 .setImages(getImages())
+                //.setImages(getImagesAsArray())
                 .setNoImagesAvailableText("No images available yet!")
                 .setOnLargeImageClickCallback(new OnClickCallback() {
                     @Override
@@ -40,6 +42,11 @@ public class MainActivity extends AppCompatActivity {
         imageUrls.add("http://www.allgoodcleanrecords.com/photo/record_stores/route66/DSC_0179.jpg");
         imageUrls.add("http://www.allgoodcleanrecords.com/photo/record_stores/route66/DSC_0179121.jpg");
         return imageUrls;
+    }
+
+    private String[] getImagesAsArray() {
+        Object[] objectList = getImages().toArray();
+        return Arrays.copyOf(objectList,objectList.length,String[].class);
     }
 
 }
