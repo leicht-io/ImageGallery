@@ -28,9 +28,8 @@ android {
 - English
 
 #### Screenshots:
-![Screenshot 1](https://raw.githubusercontent.com/ChristianLJ/ImageGallery/master/documentation/s1.png?w=290){:width="290px"}
-![Screenshot 2](https://raw.githubusercontent.com/ChristianLJ/ImageGallery/master/documentation/s2.png?w=290)
-
+<img src="https://raw.githubusercontent.com/ChristianLJ/ImageGallery/master/documentation/s1.png" width="290">
+<img src="https://raw.githubusercontent.com/ChristianLJ/ImageGallery/master/documentation/s2.png" width="290">
 ### Example:
 Use the gallery the following way:
 Add the view to your app:
