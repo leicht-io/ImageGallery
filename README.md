@@ -31,7 +31,6 @@ android {
 <img src="https://raw.githubusercontent.com/ChristianLJ/ImageGallery/master/documentation/s1.png" width="290">
 <img src="https://raw.githubusercontent.com/ChristianLJ/ImageGallery/master/documentation/s2.png" width="290">
 ### Example:
-Use the gallery the following way:
 Add the view to your app:
 ```xml
 <app.ltaps.imagegallery.ImageGallery
@@ -49,7 +48,7 @@ protected void onCreate(Bundle savedInstanceState) {
 
     ImageGallery imageGallery = (ImageGallery) findViewById(R.id.imageGallery);
     imageGallery
-            .setImages(getImages())
+            .setImages(getImages()) //A List with URL's
             .setNoImagesAvailableText("No images available yet!")
             .setOnLargeImageClickCallback(new OnClickCallback() {
                 @Override
