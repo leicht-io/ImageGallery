@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearSnapHelper;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SnapHelper;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -19,13 +20,14 @@ import app.ltaps.imagegallery.Utils.PlacesGalleryAdapter;
 
 /**
  * Created by Christian on 21-12-2016.
- * Edited by Christian on 21-12-2016.
+ * Edited by Christian on 22-12-2016.
  */
 
 public class ImageGallery extends RelativeLayout {
     private Context context;
     private List<String> imageUrls;
     private OnClickCallback onClickCallback;
+    private String noImagesAvailableText = "";
 
     public ImageGallery(Context context) {
         super(context);
@@ -48,7 +50,7 @@ public class ImageGallery extends RelativeLayout {
         init(context);
     }
 
-    public void init(Context context) {
+    private void init(Context context) {
         this.context = context;
         inflate(context, R.layout.image_gallery, this);
     }
@@ -63,30 +65,60 @@ public class ImageGallery extends RelativeLayout {
         return this;
     }
 
+    public ImageGallery setNoImagesAvailableText(String noImagesAvailableText) {
+        this.noImagesAvailableText = noImagesAvailableText;
+        return this;
+    }
+
+    public String getNoImagesAvailableText() {
+        return this.noImagesAvailableText;
+    }
+
     public void start() {
         if (this.imageUrls == null || this.imageUrls.isEmpty()) {
-            throw new IllegalArgumentException("No images");
+            hideElementsWhenNoImagesAreAvailable();
+            showNoImagesAreAvailableTextView();
         } else if (this.context == null) {
-            throw new IllegalArgumentException("No context");
+            throw new IllegalArgumentException("No context are present. Please provide a context.");
         } else {
-            RecyclerView recyclerView = (RecyclerView) findViewById(R.id.gallery);
-            recyclerView.setHasFixedSize(true);
-
-            CenterLayoutManager layoutManager = new CenterLayoutManager(context, CenterLayoutManager.HORIZONTAL, false);
-
-            SnapHelper snapHelper = new LinearSnapHelper();
-            if (recyclerView.getOnFlingListener() == null) {
-                snapHelper.attachToRecyclerView(recyclerView);
-            }
-
-            recyclerView.setLayoutManager(layoutManager);
-            PlacesGalleryAdapter adapter = new PlacesGalleryAdapter(context, imageUrls, (ImageView) findViewById(R.id.singleImage), (TextView) findViewById(R.id.size), recyclerView);
-
-            if(this.onClickCallback != null) {
-                adapter.setCallback(this.onClickCallback);
-            }
-
-            recyclerView.setAdapter(adapter);
+            initGalleryWhenImagesAreAvailable();
         }
+    }
+
+    private void hideElementsWhenNoImagesAreAvailable() {
+        View bottomScrim = findViewById(R.id.bottom_scrim);
+        TextView sizeText = (TextView) findViewById(R.id.size);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.gallery);
+        bottomScrim.setVisibility(GONE);
+        sizeText.setVisibility(GONE);
+        recyclerView.setVisibility(GONE);
+
+    }
+
+    private void showNoImagesAreAvailableTextView() {
+        TextView noImagesTextView = (TextView) findViewById(R.id.no_images_text_view);
+        noImagesTextView.setVisibility(VISIBLE);
+        noImagesTextView.setText(getNoImagesAvailableText());
+    }
+
+    private void initGalleryWhenImagesAreAvailable() {
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.gallery);
+        recyclerView.setHasFixedSize(true);
+
+        CenterLayoutManager layoutManager = new CenterLayoutManager(context, CenterLayoutManager.HORIZONTAL, false);
+
+        SnapHelper snapHelper = new LinearSnapHelper();
+        if (recyclerView.getOnFlingListener() == null) {
+            snapHelper.attachToRecyclerView(recyclerView);
+        }
+
+        recyclerView.setLayoutManager(layoutManager);
+        PlacesGalleryAdapter adapter = new PlacesGalleryAdapter(context, imageUrls, (ImageView) findViewById(R.id.singleImage), (TextView) findViewById(R.id.size), recyclerView);
+
+        if (this.onClickCallback != null) {
+            adapter.setCallback(this.onClickCallback);
+        }
+
+        recyclerView.setAdapter(adapter);
     }
 }

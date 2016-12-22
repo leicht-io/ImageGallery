@@ -28,24 +28,43 @@ android {
 - English
 
 #### Screenshots:
-On the way...
-<!--![Screenshot 1](https://raw.githubusercontent.com/ChristianLJ/MultipleImagePicker/master/documentation/s1.png?w=290)
-![Screenshot 2](https://raw.githubusercontent.com/ChristianLJ/MultipleImagePicker/master/documentation/s2.png?w=290)
-![Screenshot 3](https://raw.githubusercontent.com/ChristianLJ/MultipleImagePicker/master/documentation/s3.png?w=290)-->
+![Screenshot 1](https://raw.githubusercontent.com/ChristianLJ/ImageGallery/master/documentation/s1.png?w=290)
+![Screenshot 2](https://raw.githubusercontent.com/ChristianLJ/ImageGallery/master/documentation/s2.png?w=290)
 
 ### Example:
 Use the gallery the following way:
-```java
-...
-```
-
 Add the view to your app:
 ```xml
-...
+<app.ltaps.imagegallery.ImageGallery
+    android:id="@+id/imageGallery"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" />
 ```
 
+Init and use the view from your app:
+```java
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+
+    ImageGallery imageGallery = (ImageGallery) findViewById(R.id.imageGallery);
+    imageGallery
+            .setImages(getImages())
+            .setNoImagesAvailableText("No images available yet!")
+            .setOnLargeImageClickCallback(new OnClickCallback() {
+                @Override
+                public void OnClick(String currentImageUrl) {
+                    Toast.makeText(getApplicationContext(), "Clicked image", Toast.LENGTH_LONG).show();
+                }
+            })
+            .start();
+}
+```
+
+
 ### Releases
-[Release 0.1] is the current latest release. This release is considered stable.
+[Release 0.2] is the current latest release. This release is considered stable.
 
 
 **Gradle configuration:**
@@ -62,7 +81,7 @@ allprojects {
 
 dependencies {
     ...
-    compile 'com.github.ChristianLJ:ImageGallery:0.1'
+    compile 'com.github.ChristianLJ:ImageGallery:0.2'
     ...
 }
 ```

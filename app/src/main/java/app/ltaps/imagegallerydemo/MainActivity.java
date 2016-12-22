@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
         ImageGallery imageGallery = (ImageGallery) findViewById(R.id.imageGallery);
         imageGallery
                 .setImages(getImages())
+                .setNoImagesAvailableText("No images available yet!")
                 .setOnLargeImageClickCallback(new OnClickCallback() {
                     @Override
                     public void OnClick(String currentImageUrl) {
