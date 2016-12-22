@@ -5,7 +5,7 @@
 
 ImageGallery is an image gallery for Android. With this image gallery you can easly add a gallery to your app. 
 
-The gallery accepts a `List<String>` and uses Picasso to load them.
+The gallery accepts a `List<String>` containing image URL's and uses Picasso to load them.
 
 ImageGallery is licensed under the friendly [Apache2 licence].
 
