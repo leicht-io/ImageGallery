@@ -28,7 +28,7 @@ android {
 - English
 
 #### Screenshots:
-![Screenshot 1](https://raw.githubusercontent.com/ChristianLJ/ImageGallery/master/documentation/s1.png?w=290)
+![Screenshot 1](https://raw.githubusercontent.com/ChristianLJ/ImageGallery/master/documentation/s1.png?w=290){:width="290px"}
 ![Screenshot 2](https://raw.githubusercontent.com/ChristianLJ/ImageGallery/master/documentation/s2.png?w=290)
 
 ### Example:
