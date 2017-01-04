@@ -46,19 +46,19 @@ protected void onCreate(Bundle savedInstanceState) {
     setContentView(R.layout.activity_main);
 
     ImageGallery imageGallery = (ImageGallery) findViewById(R.id.imageGallery);
-     imageGallery
-                .setImages(getImages())
-                //.setImages(getImagesAsArray())
-                .setLanguageHelper(new LanguageHelper(this)
-                        .setNoImagesAvailable("No images are available!")
-                        .setOutOf("out of"))
-                .setOnLargeImageClickCallback(new OnClickCallback() {
-                    @Override
-                    public void OnClick(String currentImageUrl) {
-                        Toast.makeText(getApplicationContext(), "Clicked image", Toast.LENGTH_LONG).show();
-                    }
-                })
-                .start();
+    imageGallery
+        .setImages(getImages())
+        //.setImages(getImagesAsArray())
+        .setLanguageHelper(new LanguageHelper(this)
+            .setNoImagesAvailable("No images are available!")
+            .setOutOf("out of"))
+        .setOnLargeImageClickCallback(new OnClickCallback() {
+            @Override
+            public void OnClick(String currentImageUrl) {
+                Toast.makeText(getApplicationContext(), "Clicked image", Toast.LENGTH_LONG).show();
+            }
+        })
+        .start();
 }
 ```
 
