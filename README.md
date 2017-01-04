@@ -64,7 +64,7 @@ protected void onCreate(Bundle savedInstanceState) {
 
 
 ### Releases
-[Release 0.3] is the current latest release. This release is considered a beta release.
+[Release 0.4] is the current latest release. This release is considered a beta release.
 
 
 **Gradle configuration:**
@@ -81,7 +81,7 @@ allprojects {
 
 dependencies {
     ...
-    compile 'com.github.ChristianLJ:ImageGallery:0.3'
+    compile 'com.github.ChristianLJ:ImageGallery:0.4'
     ...
 }
 ```

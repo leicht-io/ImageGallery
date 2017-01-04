@@ -98,7 +98,9 @@ public class PlacesGalleryAdapter extends RecyclerView.Adapter<ImageViewHolder> 
         parent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onClickCallback.OnClick(currentImageUrl);
+                if(onClickCallback != null) {
+                    onClickCallback.OnClick(currentImageUrl);
+                }
             }
         });
     }
