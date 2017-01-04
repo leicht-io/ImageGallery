@@ -5,7 +5,7 @@
 
 ImageGallery is an image gallery for Android. With this image gallery you can easly add a gallery to your app. 
 
-The gallery accepts a `List<String>` containing image URL's and uses Picasso to load them.
+The gallery accepts a `List<String>` or a `String[]` containing image URL's and uses Picasso to load them.
 
 ImageGallery is licensed under the friendly [Apache2 licence].
 
@@ -16,7 +16,7 @@ Various documentation is available:
 ```groovy
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.1"
+    buildToolsVersion "25.1.0"
     defaultConfig {
         minSdkVersion 17
         targetSdkVersion 25
@@ -24,8 +24,7 @@ android {
 }
 ```
 ##### Supported languages:
-- Danish
-- English
+- All using a LanguageHelper. Defaults to english.
 
 #### Screenshots:
 <img src="https://raw.githubusercontent.com/ChristianLJ/ImageGallery/master/documentation/s1.png" width="290">
@@ -47,22 +46,25 @@ protected void onCreate(Bundle savedInstanceState) {
     setContentView(R.layout.activity_main);
 
     ImageGallery imageGallery = (ImageGallery) findViewById(R.id.imageGallery);
-    imageGallery
-            .setImages(getImages()) //A List with URL's
-            .setNoImagesAvailableText("No images available yet!")
-            .setOnLargeImageClickCallback(new OnClickCallback() {
-                @Override
-                public void OnClick(String currentImageUrl) {
-                    Toast.makeText(getApplicationContext(), "Clicked image", Toast.LENGTH_LONG).show();
-                }
-            })
-            .start();
+     imageGallery
+                .setImages(getImages())
+                //.setImages(getImagesAsArray())
+                .setLanguageHelper(new LanguageHelper(this)
+                        .setNoImagesAvailable("No images are available!")
+                        .setOutOf("out of"))
+                .setOnLargeImageClickCallback(new OnClickCallback() {
+                    @Override
+                    public void OnClick(String currentImageUrl) {
+                        Toast.makeText(getApplicationContext(), "Clicked image", Toast.LENGTH_LONG).show();
+                    }
+                })
+                .start();
 }
 ```
 
 
 ### Releases
-[Release 0.2] is the current latest release. This release is considered stable.
+[Release 0.3] is the current latest release. This release is considered a beta release.
 
 
 **Gradle configuration:**
@@ -79,7 +81,7 @@ allprojects {
 
 dependencies {
     ...
-    compile 'com.github.ChristianLJ:ImageGallery:0.2'
+    compile 'com.github.ChristianLJ:ImageGallery:0.3'
     ...
 }
 ```

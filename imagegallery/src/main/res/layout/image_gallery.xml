@@ -30,20 +30,20 @@
             android:id="@+id/size"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:alpha="0.8"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="6dp"
             android:layout_marginEnd="6dp"
+            android:alpha="0.8"
             android:gravity="end"
             android:textColor="@android:color/white" />
 
         <TextView
-            android:layout_width="match_parent"
             android:id="@+id/no_images_text_view"
-            android:textSize="26sp"
-            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:gravity="center"
-            android:layout_height="match_parent" />
+            android:textSize="26sp"
+            android:visibility="gone" />
 
     </RelativeLayout>
 

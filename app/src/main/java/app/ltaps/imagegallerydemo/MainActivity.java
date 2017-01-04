@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import app.ltaps.imagegallery.ImageGallery;
+import app.ltaps.imagegallery.Utils.LanguageHelper;
 import app.ltaps.imagegallery.Utils.OnClickCallback;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,7 +23,9 @@ public class MainActivity extends AppCompatActivity {
         imageGallery
                 .setImages(getImages())
                 //.setImages(getImagesAsArray())
-                .setNoImagesAvailableText("No images available yet!")
+                .setLanguageHelper(new LanguageHelper(this)
+                        .setNoImagesAvailable("No images are available!")
+                        .setOutOf("out of"))
                 .setOnLargeImageClickCallback(new OnClickCallback() {
                     @Override
                     public void OnClick(String currentImageUrl) {
@@ -38,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
         imageUrls.add("http://www.allgoodcleanrecords.com/photo/record_stores/route66/DSC_0177.jpg");
         imageUrls.add("http://www.allgoodcleanrecords.com/photo/record_stores/route66/DSC_0176.jpg");
         imageUrls.add("http://www.allgoodcleanrecords.com/photo/record_stores/route66/DSC_0180.jpg");
+        imageUrls.add("http://www.allgoodcleanrecords.com/photo/record_stores/route66/DSC_0177.jpg");
+        imageUrls.add("http://www.allgoodcleanrecords.com/photo/record_stores/route66/DSC_0176.jpg");
+        imageUrls.add("http://www.allgoodcleanrecords.com/photo/record_stores/route66/DSC_0180.jpg");
         imageUrls.add("http://www.allgoodcleanrecords.com/photo/record_stores/route66/DSC_0185.jpg");
         imageUrls.add("http://www.allgoodcleanrecords.com/photo/record_stores/route66/DSC_0179.jpg");
         imageUrls.add("http://www.allgoodcleanrecords.com/photo/record_stores/route66/DSC_0179121.jpg");
@@ -46,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
     private String[] getImagesAsArray() {
         Object[] objectList = getImages().toArray();
-        return Arrays.copyOf(objectList,objectList.length,String[].class);
+        return Arrays.copyOf(objectList, objectList.length, String[].class);
     }
 
 }

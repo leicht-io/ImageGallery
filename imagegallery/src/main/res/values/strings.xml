@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">ImageGallery</string>
     <string name="out_of">" out of "</string>
+    <string name="no_images_available">No images available!</string>
 </resources>

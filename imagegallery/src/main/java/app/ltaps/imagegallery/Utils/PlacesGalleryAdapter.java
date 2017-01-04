@@ -27,44 +27,52 @@ import app.ltaps.imagegallery.ViewHolders.ImageViewHolder;
 
 public class PlacesGalleryAdapter extends RecyclerView.Adapter<ImageViewHolder> {
     private List<GalleryImage> gallery = new ArrayList<>();
+    private int standardMargin = 0;
+    private String currentImageUrl = "";
     private Context context;
     private ImageView parent;
     private TextView size;
     private RecyclerView recyclerView;
-    private String currentImageUrl = "";
     private OnClickCallback onClickCallback;
-    private int standardMargin = 0;
+    private LanguageHelper languageHelper;
 
-    public PlacesGalleryAdapter(Context context, List<String> gallery, ImageView parent, TextView size, RecyclerView recyclerView) {
+    public PlacesGalleryAdapter(Context context, List<String> gallery, ImageView parent, TextView size, RecyclerView recyclerView, LanguageHelper languageHelper) {
         this.parent = parent;
         this.context = context;
         this.size = size;
         this.recyclerView = recyclerView;
         this.standardMargin = ScreenUtils.convertDpToPixel(context, 2);
+        this.languageHelper = languageHelper;
 
-        for (int i = 0; i < gallery.size(); i++) {
-            GalleryImage galleryImage = new GalleryImage();
-            galleryImage.setImageUrl(gallery.get(i));
-            if (i == 0) {
-                galleryImage.setCenter(true);
-                currentImageUrl = galleryImage.getImageUrl();
-                populateParentImage();
-            } else {
-                galleryImage.setCenter(false);
+        if (gallery != null) {
+            for (int i = 0; i < gallery.size(); i++) {
+                GalleryImage galleryImage = new GalleryImage();
+                galleryImage.setImageUrl(gallery.get(i));
+                if (i == 0) {
+                    galleryImage.setCenter(true);
+                    currentImageUrl = galleryImage.getImageUrl();
+                    populateParentImage();
+                } else {
+                    galleryImage.setCenter(false);
+                }
+                this.gallery.add(galleryImage);
             }
-            this.gallery.add(galleryImage);
-        }
 
-        setSizeText(1);
-        showImage();
+            setAmount(1, getItemCount());
+            setOnClickListeners();
+        }
     }
 
     public void setCallback(OnClickCallback onClickCallback) {
         this.onClickCallback = onClickCallback;
     }
 
-    private void setSizeText(int current) {
-        this.size.setText(current + context.getString(R.string.out_of) + String.valueOf(this.gallery.size()));
+    private void setAmount(int current, int size) {
+        if (this.languageHelper == null) {
+            this.size.setText(current + context.getString(R.string.out_of) + size);
+        } else {
+            this.size.setText(current + this.languageHelper.getOutOf() + size);
+        }
     }
 
     private void populateParentImage() {
@@ -86,7 +94,7 @@ public class PlacesGalleryAdapter extends RecyclerView.Adapter<ImageViewHolder> 
                 });
     }
 
-    private void showImage() {
+    private void setOnClickListeners() {
         parent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -165,24 +173,30 @@ public class PlacesGalleryAdapter extends RecyclerView.Adapter<ImageViewHolder> 
     }
 
     private void updateCenter(int center, ImageView imageView) {
-        for (GalleryImage galleryImage : gallery) {
-            galleryImage.setCenter(false);
+        if (gallery != null) {
+            for (GalleryImage galleryImage : gallery) {
+                galleryImage.setCenter(false);
+            }
+
+            gallery.get(center).setCenter(true);
+
+            if (gallery.get(center).isCenter()) {
+                imageView.clearColorFilter();
+                imageView.invalidate();
+            }
+
+            setAmount(center + 1, getItemCount());
         }
 
-        gallery.get(center).setCenter(true);
-
-        if (gallery.get(center).isCenter()) {
-            imageView.clearColorFilter();
-            imageView.invalidate();
-        }
-
-        setSizeText(center + 1);
         notifyDataSetChanged();
     }
 
     @Override
     public int getItemCount() {
-        return gallery.size();
+        if (gallery != null) {
+            return gallery.size();
+        }
+        return -1;
     }
 
 }

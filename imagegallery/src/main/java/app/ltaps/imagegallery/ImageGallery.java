@@ -17,6 +17,7 @@ import java.util.Collections;
 import java.util.List;
 
 import app.ltaps.imagegallery.Utils.CenterLayoutManager;
+import app.ltaps.imagegallery.Utils.LanguageHelper;
 import app.ltaps.imagegallery.Utils.OnClickCallback;
 import app.ltaps.imagegallery.Utils.PlacesGalleryAdapter;
 
@@ -30,7 +31,7 @@ public class ImageGallery extends RelativeLayout {
     private Context context;
     private List<String> imageUrls;
     private OnClickCallback onClickCallback;
-    private String noImagesAvailableText = "";
+    private LanguageHelper languageHelper;
 
     public ImageGallery(Context context) {
         super(context);
@@ -76,13 +77,13 @@ public class ImageGallery extends RelativeLayout {
         return this;
     }
 
-    public ImageGallery setNoImagesAvailableText(String noImagesAvailableText) {
-        this.noImagesAvailableText = noImagesAvailableText;
+    public ImageGallery setLanguageHelper(LanguageHelper languageHelper) {
+        this.languageHelper = languageHelper;
         return this;
     }
 
-    public String getNoImagesAvailableText() {
-        return this.noImagesAvailableText;
+    public LanguageHelper getLanguageHelper() {
+        return this.languageHelper;
     }
 
     public void start() {
@@ -109,7 +110,12 @@ public class ImageGallery extends RelativeLayout {
     private void showNoImagesAreAvailableTextView() {
         TextView noImagesTextView = (TextView) findViewById(R.id.no_images_text_view);
         noImagesTextView.setVisibility(VISIBLE);
-        noImagesTextView.setText(getNoImagesAvailableText());
+        if (getLanguageHelper() == null) {
+            noImagesTextView.setText(getContext().getString(R.string.no_images_available));
+        } else {
+            noImagesTextView.setText(getLanguageHelper().getNoImagesAvailable());
+        }
+
     }
 
     private void initGalleryWhenImagesAreAvailable() {
@@ -124,7 +130,12 @@ public class ImageGallery extends RelativeLayout {
         }
 
         recyclerView.setLayoutManager(layoutManager);
-        PlacesGalleryAdapter adapter = new PlacesGalleryAdapter(context, imageUrls, (ImageView) findViewById(R.id.singleImage), (TextView) findViewById(R.id.size), recyclerView);
+        PlacesGalleryAdapter adapter = new PlacesGalleryAdapter(context,
+                imageUrls,
+                (ImageView) findViewById(R.id.singleImage),
+                (TextView) findViewById(R.id.size),
+                recyclerView,
+                languageHelper);
 
         if (this.onClickCallback != null) {
             adapter.setCallback(this.onClickCallback);
