@@ -24,7 +24,7 @@ android {
 }
 ```
 ##### Supported languages:
-- All using a LanguageHelper. Defaults to english.
+- All using a LanguageHelper. Defaults to english. See the example.
 
 #### Screenshots:
 <img src="https://raw.githubusercontent.com/ChristianLJ/ImageGallery/master/documentation/s1.png" width="290">
