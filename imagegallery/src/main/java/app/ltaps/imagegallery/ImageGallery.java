@@ -56,7 +56,7 @@ public class ImageGallery extends RelativeLayout {
 
     private void init(Context context) {
         this.context = context;
-        inflate(context, R.layout.image_gallery, this);
+        inflate(context, R.layout.clj_image_gallery, this);
     }
 
     public ImageGallery setImages(List<String> imageUrls) {

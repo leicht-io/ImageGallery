@@ -87,7 +87,7 @@ public class PlacesGalleryAdapter extends RecyclerView.Adapter<ImageViewHolder> 
                     @Override
                     public void onError() {
                         Picasso.with(context)
-                                .load(R.drawable.no_image)
+                                .load(R.drawable.clj_no_image)
                                 .transform(new RoundedTransformation(20, 0))
                                 .into(parent);
                     }
@@ -107,7 +107,7 @@ public class PlacesGalleryAdapter extends RecyclerView.Adapter<ImageViewHolder> 
 
     @Override
     public ImageViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_gallery, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.clj_item_gallery, viewGroup, false);
         return new ImageViewHolder(view);
     }
 
@@ -166,7 +166,7 @@ public class PlacesGalleryAdapter extends RecyclerView.Adapter<ImageViewHolder> 
                     @Override
                     public void onError() {
                         Picasso.with(context)
-                                .load(R.drawable.no_image)
+                                .load(R.drawable.clj_no_image)
                                 .transform(new RoundedTransformation(20, 0))
                                 .into(viewHolder.galleryImage);
                     }

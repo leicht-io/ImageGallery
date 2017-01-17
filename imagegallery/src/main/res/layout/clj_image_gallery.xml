@@ -24,7 +24,7 @@
             android:layout_height="100dp"
             android:layout_alignParentBottom="true"
             android:layout_gravity="bottom"
-            android:background="@drawable/bottom_scrim" />
+            android:background="@drawable/clj_bottom_scrim" />
 
         <TextView
             android:id="@+id/size"
