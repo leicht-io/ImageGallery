@@ -103,6 +103,28 @@ public class PlacesGalleryAdapter extends RecyclerView.Adapter<ImageViewHolder> 
                 }
             }
         });
+
+        parent.setOnTouchListener(new OnSwipeTouchListener(context, new OnSwipeInterface() {
+            @Override
+            public void onSwipeRight() {
+                //Toast.makeText(context, "swipeRight", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onSwipeLeft() {
+                //Toast.makeText(context, "swipeLeft", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onSwipeTop() {
+             //Toast.makeText(context, "swipeTop", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onSwipeBottom() {
+              //  Toast.makeText(context, "swipeBottom", Toast.LENGTH_SHORT).show();
+            }
+        }));
     }
 
     @Override
